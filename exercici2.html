@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generar Taula</title>
+</head>
+<body>
+    <h2>Generar Taula</h2>
+    
+    <form>
+        <label for="files">Entra la quantitat de països a visualitzar:</label>
+        <input type="number" id="files" min="1">
+    </form>
+
+    <div style="margin-top: 20px;"></div>
+    
+    <h3>TAULA</h3>
+
+    <div id="taula">
+        <table border='1' width='100%'>
+            <thead>
+                <tr>
+                    <th>Ciutat</th>
+                    <th>País</th>
+                    <th>Continent</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br>
+    <input type="button" value="Generar Taula" onclick="generarTaula()">
+    <input type="button" value="Esborrar Taula" id="esborrar" onclick="esborrarTaula()">
+
+    <script>
+		
+        function generarTaula() {
+            let numFiles = parseInt(document.getElementById("files").value);
+            let llista1 = ["París", "Londres", "Roma", "Berlín", "Copenhague", "Viena", "Lisboa", "Washington_DC", "Ottawa", "L'Havana", "Santiago", "Lima", "Montevideo", "Canberra", "Wellington", "Monròvia", "Abuja", "Dakar", "Tunis", "Tokyo", "Seül", "Beijing", "Taipei"];
+            let llista2 = ["França", "UK", "Itàlia", "Alemanya", "Dinamarca", "Àustria", "Portugal", "USA", "Canada", "Cuba", "Xile", "Perú", "Uruguay", "Austràlia", "Nova_Zelanda", "Libèria", "Nigèria", "Senegal", "Tunísia", "Japó", "Corea_Sud", "Xina", "Taiwan"];
+            let llista3 = ["Europa", "Europa", "Europa", "Europa", "Europa", "Europa", "Europa", "Amèrica", "Amèrica", "Amèrica", "Amèrica", "Amèrica", "Amèrica", "Oceania", "Oceania", "Àfrica", "Àfrica", "Àfrica", "Àfrica", "Àsia", "Àsia", "Àsia"];
+            let taula = "";
+            for (let i = 0; i < numFiles; i++) {
+                let randomIndex = Math.floor(Math.random() * llista1.length);
+                let ciutat = llista1[randomIndex];
+                let país = llista2[randomIndex];
+                let continent = llista3[randomIndex];
+                taula += "<tr><td>" + ciutat + "</td><td>" + país + "</td><td>" + continent + "</td></tr>";
+            }
+            document.getElementById("taula").innerHTML = "<table border='1' width='100%'><thead><tr><th>Ciutat</th><th>País</th><th>Continent</th></tr></thead><tbody>" + taula + "</tbody></table>";
+        }
+        
+		function esborrarTaula() {
+			let table = document.getElementById("taula").getElementsByTagName('tbody')[0];
+			table.innerHTML = "";
+		}
+
+    </script>
+</body>
+</html>
